@@ -29,19 +29,19 @@ Samples
 
 ####My living room, one channel
 
-![](http://www.patrick-fuller.com/wp-content/uploads/2012/10/living_room_100x75-688x387.png)
+![](http://www.patrick-fuller.com/wp-content/uploads/2012/10/living_room_100x75.png)
 
 ####My living room after being passed through a Gaussian filter
 
-![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gauss10-688x387.png)
+![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gauss10.png)
 
 ####A visualization of that Gaussian filter
 
-![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gauss-688x387.png)
+![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gauss.png)
 
 ####A visualation of a Gabor filter
 
-![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gabor-688x387.png)
+![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gabor.png)
 
 ####Red, green, and blue channels of Lenna
 
