@@ -1,4 +1,4 @@
-Images Pixel Visualization in Blender
+Image Pixel Visualization in Blender
 =====================================
 
 Generates 3D depictions of images in Blender. Intended for use in computer-vision education and such.
