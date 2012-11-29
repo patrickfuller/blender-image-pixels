@@ -37,7 +37,7 @@ Samples
 
 ####A visualization of that Gaussian filter
 
-![]http://www.patrick-fuller.com/wp-content/uploads/2012/11/gauss-688x387.png
+![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gauss-688x387.png)
 
 ####A visualation of a Gabor filter
 
