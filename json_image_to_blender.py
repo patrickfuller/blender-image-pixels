@@ -63,6 +63,7 @@ def pixels_to_blender(pixels, z_scale=0.05):
     bpy.context.scene.update()
 
 # Read json data and run through Blender
-with open("pixels.json") as indata:
-    pixels = json.load(indata)
-pixels_to_blender(pixels)
+if __name__ == "__main__":
+    with open("pixels.json") as indata:
+        pixels = json.load(indata)
+    pixels_to_blender(pixels)
