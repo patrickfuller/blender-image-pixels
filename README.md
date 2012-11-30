@@ -35,11 +35,11 @@ Samples
 
 ![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gauss10.png)
 
-####A visualization of that Gaussian filter
+####A visualization of a 21x21 Gaussian kernel
 
 ![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gauss.png)
 
-####A visualation of a Gabor filter
+####A visualization of a 21x21 Gabor kernel
 
 ![](http://www.patrick-fuller.com/wp-content/uploads/2012/11/gabor.png)
 
