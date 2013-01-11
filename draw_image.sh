@@ -1,4 +1,10 @@
 # Convert image to JSON and save to file
-python image_to_json.py living_room_100x75_L.png > pixels.json
+python image_to_json.py $1 > pixels.json
+
 # Run script in blender (reads pixels.json)
-blender image.blend -P json_image_to_blender.py
+if [[ $(uname -s) == "Darwin" ]]; then
+    # Mac version, assumes no blender link
+    /Applications/blender.app/Contents/MacOS/./blender pixels.blend -P json_image_to_blender.py
+else
+    blender pixels.blend -P json_image_to_blender.py
+fi

@@ -12,8 +12,7 @@ Usage
 -----
 
 ```bash
-python image_to_json.py my_image.png > pixels.json
-blender image.blend -P json_image_to_blender.py
+sh draw_image.sh my_image.png
 ```
 
 Without the command line, you can copy and paste the contents of `json_image_to_blender.py` into Blender, update the path to `pixels.json`, and run.

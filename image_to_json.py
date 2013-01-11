@@ -14,7 +14,7 @@ if len(argv) != 2:
 image = Image.open(argv[1])
 pixels = list(image.getdata())
 width, height = image.size
-pixels = [pixels[i*width:(i+1)*width] for i in range(height)]
+pixels = [pixels[i * width:(i + 1) * width] for i in range(height)]
 
 # Use first value if multi channel
 if type(pixels[0][0]) is not int:
