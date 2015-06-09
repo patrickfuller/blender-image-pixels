@@ -3,6 +3,7 @@
 Loads a file of pixel values and converts to bar heights for use in Blender.
 """
 
+import sys
 import bpy
 import json
 
@@ -66,6 +67,7 @@ def pixels_to_blender(pixels, z_scale=0.05):
 
 # Read json data and run through Blender
 if __name__ == "__main__":
-    with open("pixels.json") as indata:
+    pixels = sys.argv[-1]
+    with open(pixels) as indata:
         pixels = json.load(indata)
     pixels_to_blender(pixels)
