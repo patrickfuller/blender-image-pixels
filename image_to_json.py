@@ -1,44 +1,56 @@
 #!/usr/bin/env python
 """Converts image to json-like file.
+
+Usage:
+    image_to_json.py (-i FILE) [-o FILE] [-s K] [-f FILTER]
+
+Options:
+    -h --help                   Shows this screen.
+    -i FILE --input=FILE        Input image file.
+    -o FILE --output=FILE       Output json file. [default: image.json]
+    -s K --size=K               Resize image in K. [default: False]
+    -f FILTER --filter=FILTER   Resampling filter, NEAREST, BILINEAR, BICUBIC or LANCZOS. [default: NEAREST]
 """
 
 
 import os
 import sys
 import getopt
+from docopt import docopt
 
-import Image
 import json
 
-
-params = {'sname': os.path.basename(sys.argv[0]),
-          'h':('-h', '--help'),
-          'i':', '.join(('-i IMAGE', '--input=IMAGE')),
-          'idesc': 'Input image file, parsed using PIL library',
-          'o':', '.join(('-o IMAGE', '--output=IMAGE')),
-          'odesc': 'Output file, *.json',
-          'fill':' ',
-          'align':'<',
-          'newline':'\n',
-          'width':30,
-          'start':4*' ',
-          }
-
-def help_msg():
-    s = ('{newline}Usage: {sname} [options]{newline}'
-         '{newline}Options:'
-         '{newline}{start}{i:{fill}{align}{width}s}{idesc}'
-         '{newline}{start}{o:{fill}{align}{width}s}{odesc}').format(**params)
-    return s
+from PIL import Image
 
 
-def get_pixels(fname):
+def get_filter(resample):
+    if resample.upper() == 'NEAREST':
+        f = Image.NEAREST
+    elif resample.upper() == 'BILINEAR':
+        f = Image.BILINEAR
+    elif resample.upper() == 'BICUBIC':
+        f = Image.BICUBIC
+    elif resample.upper() == 'LANCZOS':
+        f = Image.LANCZOS
+    else:
+        f = Image.NEAREST
+    return f
+
+def get_pixels(fname, size=False, resample='NEAREST'):
     image = Image.open(fname)
-    pixels = list(image.getdata())
     width, height = image.size
+
+    if size.upper() != 'FALSE':
+        width = int(width*float(size))
+        height = int(height*float(size))
+        image = image.resize((width, height), resample=get_filter(resample))
+
+    pixels = list(image.getdata())
     pixels = [pixels[i * width:(i + 1) * width] for i in range(height)]
+
     if type(pixels[0][0]) is not int:
         pixels = [[p[0] for p in row] for row in pixels]
+
     return pixels
 
 def write_json(fname, pixels):
@@ -46,27 +58,8 @@ def write_json(fname, pixels):
         return f.write(json.dumps(pixels, indent=4))
 
 if __name__ == '__main__':
-    ifile = ''
-    ofile = ''
-
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], 'hi:o:',
-                                   ['help', 'input=', 'output='])
-
-    except getopt.GetoptError as err:
-        print str(err)
-        print help_msg()
-        sys.exit(1)
-
-    for opt, arg in opts:
-        if opt in ('-h', '--help'):
-            print help_msg()
-            sys.exit(0)
-
-        elif opt in ('-i', '--input'):
-            ifile = arg
-
-        elif opt in ('-o', '--output'):
-            ofile = arg
-
-    write_json(ofile, get_pixels(ifile))
+    args = docopt(__doc__)
+    img = get_pixels(args['--input'],
+                     size=args['--size'],
+                     resample=args['--filter'])
+    write_json(args['--output'], img)
