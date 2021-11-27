@@ -18,12 +18,14 @@ for i in range(256):
     key = "L%d" % i
     bpy.data.materials.new(name=key)
     # Convert [0, 255] to (r, g, b)
-    bpy.data.materials[key].diffuse_color = (i / 255.0,) * 3
+    bpy.data.materials[key].diffuse_color = [i / 255.0] * 3 + [1]
     bpy.data.materials[key].specular_intensity = 0.02
 
 
 def pixels_to_blender(pixels, z_scale=0.05):
     """ Iterates through pixels and draws vertical bars """
+    collection = bpy.data.collections.new('pixels')
+    bpy.context.scene.collection.children.link(collection)
 
     # Keep references to all pixels
     shapes = []
@@ -46,28 +48,26 @@ def pixels_to_blender(pixels, z_scale=0.05):
 
             # Link to scene and save
             shapes.append(bar)
-            bpy.context.scene.objects.link(bar)
+            collection.objects.link(bar)
 
     # Remove primitive meshes
     bpy.ops.object.select_all(action='DESELECT')
-    cube.select = True
+    cube.select_set(True)
     # If the starting cube is there, remove it
     if "Cube" in bpy.data.objects.keys():
-        bpy.data.objects.get("Cube").select = True
+        bpy.data.objects.get('Cube').select_set(True)
     bpy.ops.object.delete()
 
     # Join pixel shapes
     for shape in shapes:
-        shape.select = True
-    bpy.context.scene.objects.active = shapes[0]
+        shape.select_set(True)
+    bpy.context.view_layer.objects.active = shapes[0]
     bpy.ops.object.join()
 
-    # Update scene and exit function
-    bpy.context.scene.update()
 
 # Read json data and run through Blender
 if __name__ == "__main__":
     pixels = sys.argv[-1]
-    with open(pixels) as indata:
+    with open('pixels.json') as indata:
         pixels = json.load(indata)
     pixels_to_blender(pixels)

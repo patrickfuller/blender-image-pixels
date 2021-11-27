@@ -78,20 +78,18 @@ def gabor(x, y, lambda_, theta, sigma=None):
 
 def draw_image(pixels, filename):
     """Converts a generated kernel to a 2D image"""
-    import Image
+    from PIL import Image
     img = Image.new("L", size=(len(pixels), len(pixels[0])))
     for x, row in enumerate(pixels):
         for y, pixel in enumerate(row):
             img.putpixel((x, y), pixel)
     img.save(filename)
 
+
 # Get pixels
-# pixels = scale(generate_gaussian(sigma=3.0, size=21))
-# draw_image(pixels, "gaussian2D.png")
-# pixels = scale(generate_fourier(direction=pi/4, size=49))
-# draw_image(pixels, "fourier2D.png")
+pixels = scale(generate_gaussian(sigma=3.0, size=21))
+draw_image(pixels, "gaussian2D.png")
+pixels = scale(generate_fourier(direction=pi/4, size=49))
+draw_image(pixels, "fourier2D.png")
 pixels = scale(generate_gabor(direction=pi / 4))
 draw_image(pixels, "gabor2D.png")
-
-# Print json
-print json.dumps(pixels)

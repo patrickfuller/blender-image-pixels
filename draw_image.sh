@@ -1,5 +1,5 @@
 # Convert image to JSON and save to file
-python image_to_json.py $1 > pixels.json
+python image_to_json.py -i $1 -o pixels.json
 
 # Run script in blender (reads pixels.json)
 if [[ $(uname -s) == "Darwin" ]]; then

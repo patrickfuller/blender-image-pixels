@@ -52,13 +52,13 @@ def write_json(fname, pixels):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Converts image to json file.")
-    parser.add_argument('i', '--input',
+    parser.add_argument('-i', '--input',
                         type=str,
                         required=True,
                         help="Input image file.")
     parser.add_argument('-o', '--output',
                         type=str,
-                        default='image.json',
+                        default='pixels.json',
                         help="Output json file.")
     parser.add_argument('-s', '--size',
                         type=float,
