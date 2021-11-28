@@ -9,19 +9,19 @@ Samples
 
 #### My living room, one channel
 
-![](https://patrickfuller.github.io/img/living_room_3d.png)
+![](examples/living_room_3d.png)
 
 #### My living room after being passed through a Gaussian filter
 
-![](https://patrickfuller.github.io/img/gauss_room.png)
+![](examples/gauss_room.png)
 
 #### A visualization of a 21x21 Gaussian kernel
 
-![](https://patrickfuller.github.io/img/gauss_kernel.png)
+![](examples/gauss_kernel.png)
 
 #### A visualization of a 21x21 Gabor kernel
 
-![](https://patrickfuller.github.io/img/gabor_kernel.png)
+![](examples/gabor_kernel.png)
 
 Dependencies
 ------------
